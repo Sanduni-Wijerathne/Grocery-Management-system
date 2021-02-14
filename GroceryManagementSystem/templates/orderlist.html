@@ -1,0 +1,96 @@
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+    .logo ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  background-color: #BC9638;
+}
+
+.logo li {
+  float: right;
+}
+.logo h2
+{
+  float: left;
+  margin: 0px;
+    padding: 8px;
+    color: #000000;
+
+}
+
+.logo li a {
+  display: block;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.logo li a:hover {
+  background-color: #000000;
+  color: #BC9638;
+}
+</style>
+</head>
+<body>
+
+  <div class="logo">
+    <ul>
+      <h2>Grocery Management System</h2>
+        <li><a href="/">New Order</a></li>
+        <li><a href="/list">Orders</a></li>
+        <li><a href="#">Manage Products</a></li>
+        <li><a href="/analytics">Analytics</a></li>
+    </ul>
+  </div>  
+<h2 style="color: #00000; padding: 5px 5px; margin:">Orders</h2>
+
+<table>
+  <tr>
+    <th style="background-color: #BC9638">Order Date</th>
+    <th style="background-color: #BC9638">Order #</th>
+    <th style="background-color: #BC9638">Customer Name</th>
+    <th style="background-color: #BC9638">Employee ID</th>
+    <th style="background-color: #BC9638">Product</th>
+    <th style="background-color: #BC9638">quantity</th>
+    <th style="background-color: #BC9638">Total Cost</th>
+  </tr>
+  {%for i in orders%}
+  <tr>
+    <td>{{i[1]}}</td>
+    <td>{{i[0]}}</td>
+    <td>{{i[6]}}</td>
+    <td>{{i[5]}}</td>
+    <td>{{i[3]}}</td>
+    <td style="float: right; font-size: 20px;"><b>{{i[2]}}</b></td>
+    <td style="font-size: 20px; text-align: right;"><b>Rs.{{i[7]*i[2]}}</b>
+    <form method="POST" action="/delete">
+      <input type="text" name="id" value={{i[0]}} hidden>
+      <button type="submit">Delete</button>
+    </form></td>
+  </tr>
+  {% endfor %}
+
+</table>
+
+</body>
+</html>
